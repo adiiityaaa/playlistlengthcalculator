@@ -11,7 +11,7 @@ const spotifyApi = new SpotifyWebApi({
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('view engine', 'ejs'); // Set EJS as the view engine
+app.set('view engine', 'ejs');
 app.set('views', __dirname + '/public/views');
 
 app.get('/', (req, res) => {
@@ -81,7 +81,8 @@ async function lengthyt(url, speed) {
     const totalDuration = playlist.items.reduce((acc, item) => {
       return acc + parseInt(item.durationSec);
     }, 0);
-    return `Length of the playlist is ${formatTimeyt(totalDuration/speed)}`;
+    const final = Math.floor(totalDuration/speed);
+    return `Length of the playlist is ${formatTimeyt(final)}`;
   } catch (err) {
     console.error(err);
   }
